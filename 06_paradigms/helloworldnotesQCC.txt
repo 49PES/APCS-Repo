@@ -1,0 +1,18 @@
+Vansh Saboo
+APCS
+HW06 -- Paradigm Shift
+2021-09-28
+
+NetLogo
+"Hello, World!" 
+// Type in observer mode
+
+Scheme
+"Hello, World!"
+
+Python
+print("Hello, World!")
+
+Similarities/Differences
+- Python includes () around the ""
+- All have "" to denote a String
