@@ -1,0 +1,12 @@
+ 
+1) The output of the program is:
+No, I wug.
+You wugga wug.
+I wug.
+
+When baffle is invoked, ping is invoked immediately afterwards, so in conjunction, baffle and ping print "wug.", and because ping prints "." with println, a newline is created. So, the program prints "No, I " as a part of the main(String[] args), then prints "wug." (and creates a newline) as zoop is invoked, invoking baffle and ping successively. Then, zoop prints out "You wugga " and again, baffle and ping are invoked and "wug." is printed. Finally, the program goes back to the main, and prints out "I ", and then "wug." for the baffle + ping.
+
+2)
+
+3) The program will loop between baffle and ping, because baffle invokes ping and ping invokes baffle, creating a loop of baffles and pings (this will not run).
+
