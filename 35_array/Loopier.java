@@ -84,9 +84,7 @@ public class Loopier {
       int[] array3 = {2, 3, 4, 5};
       
       /*
-      for (int i : array) {
-        System.out.println(linSearchR(array, i));
-      }
+      for (int i : array) { System.out.println(linSearchR(array, i));   }
       */
       System.out.println(arrayToString(copy(array, 0, 5))); // 9, 9, 6, 7, 8, 9
      
@@ -117,6 +115,4 @@ public class Loopier {
       System.out.println(freq(values, 1029));
       System.out.println(freqRec(values, 1029));
       }
-  
-
-}
+  }
