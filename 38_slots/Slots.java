@@ -4,6 +4,7 @@
  * HW38 -- Shmoney
  * 2021-11-18
  - Working with arrays
+ - DISCO: Vansh - Math.random is [0, 1) - I intially thought it was 1], which affected the swap code
  *****************************************************/
 
 public class Slots {
@@ -63,7 +64,7 @@ public class Slots {
     // iterate through the array, swapping
     // the val at each index with a randomly chosen other index
     for(int i = 0; i < _fruits.length; i++)
-      swap(i, (int) (Math.random() * (_fruits.length - 1)) );
+      swap(i, (int) (Math.random() * _fruits.length) );
   }
 
 
@@ -105,7 +106,6 @@ public class Slots {
   public static void main( String[] args ) {
     //usage: move bar below down 1 line at a time to test functionality...
 
-    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Slots machine01 = new Slots();
     Slots machine02 = new Slots();
 
@@ -155,7 +155,7 @@ public class Slots {
     System.out.println( "====================================" );
     System.out.println( "Your spin..." + "\t" + machine01 );
     System.out.println( "JACKPOT!\n" );
-      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   }//end main
 
 }//end class Slots
