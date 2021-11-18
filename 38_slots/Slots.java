@@ -1,42 +1,57 @@
 /*****************************************************
- * Vansh Saboo
+ * Silly Serpants
+ * Vansh Saboo, Jason Zhou: Duckies: Tiggy, Tiffany
  * APCS pd08
  * HW38 -- Shmoney
  * 2021-11-18
  - Working with arrays
  - DISCO: Vansh - Math.random is [0, 1) - I intially thought it was 1], which affected the swap code
+          Jason - Agree with above
+        
  *****************************************************/
 
 public class Slots {
 
   //instance variable to represent master copy for slot machine
   private static final String[] FRUITS = {
-    "lime", "lime", "lime", 
-    "lemon", "lemon", "lemon", 
+    "lime", "lime", "lime",
+    "lemon", "lemon", "lemon",
     "cherry", "cherry", "cherry",
+    
+    "orange", "orange", "orange",
+    "grapefruit", "grapefruit", "grapefruit",
+    "tangerine", "tangerine", "tangerine",
+    "ugli", "ugli", "ugli",
+    
     "peach", "peach", "peach"
   };
 
   private String[] _fruits; //to be init'd by each instance
 
+  /*=====================================
+    Slots() -- default constructor
+    pre:  constant array FRUITS exists, has been initialized
+    post: mutable array _fruits contains same elements as FRUITS
+    =====================================*/
   public Slots()
   {
     //allocate memory for _fruits based on size of FRUITS:
     _fruits = new String[FRUITS.length];
-
-    //copy elements of FRUITS into _fruits:
-    for(int i = 0; i < FRUITS.length; i++){
-        _fruits[i] = FRUITS[i];
+    for (int i = 0; i < FRUITS.length; i++) {
+      _fruits[i] = FRUITS[i];
     }
+    //copy elements of FRUITS into _fruits:
+
   }
 
 
   /*=====================================
     String toString() -- overrides inherited toString()
-    pre:  
+    pre:
     post: returns String of elements in slots 0 thru 2, separated by tabs
     =====================================*/
-  public String toString()  {
+  public String toString()
+  {
     return _fruits[0] + "\t" + _fruits[1] + "\t" + _fruits[2];
   }
 
@@ -46,7 +61,8 @@ public class Slots {
     pre:  _fruits array exists
     post: elements at indices i, j are swapped
     =====================================*/
-  private void swap( int i, int j ) {
+  private void swap( int i, int j )
+  {
     String temp = _fruits[i];
     _fruits[i] = _fruits[j];
     _fruits[j] = temp;
@@ -58,14 +74,17 @@ public class Slots {
     pre:  _fruits array exists
     post: randomized order of elements in _fruits array
     =====================================*/
+
   public void spinOnce()
   {
     // A simple approach to shuffling:
     // iterate through the array, swapping
     // the val at each index with a randomly chosen other index
-    for(int i = 0; i < _fruits.length; i++)
-      swap(i, (int) (Math.random() * _fruits.length) );
+    for(int i = 0; i < _fruits.length; i++) {
+      swap(i, (int) (Math.random() * _fruits.length));
+    }
   }
+
 
 
   /*=====================================
@@ -74,14 +93,13 @@ public class Slots {
     post: returns true if first 3 slots represent winning combo,
     false otherwise
     =====================================*/
+
   public boolean jackpot()
   {
     boolean retBoo = false;
-    if(_fruits[0].equals(_fruits[1]) && _fruits[1].equals(_fruits[2])){return true;}
+    retBoo = (_fruits[0].equals(_fruits[1]) && _fruits[1].equals(_fruits[2]));
+
     return retBoo;
-    // retBoo included in skeleton,
-    // otherwise ** return (_fruits[0].equals(_fruits[1]) && _fruits[1].equals(_fruits[2]));  **
-    // more concise
   }
 
 
@@ -89,23 +107,27 @@ public class Slots {
     boolean miniWin() -- checks for a winning combo
     pre:  _fruits is existing array
     post: returns true if first 3 slots represent winning combo,
-    or if first 3 slots mutually distinct, 
+    or if first 3 slots mutually distinct,
     false otherwise
     =====================================*/
+    
   public boolean miniWin()
   {
     boolean retBoo = false;
-    if(_fruits[0].equals(_fruits[1]) && _fruits[1].equals(_fruits[2])){retBoo = true;}
-    if(!_fruits[0].equals(_fruits[1]) && !_fruits[1].equals(_fruits[2]) && !_fruits[0].equals(_fruits[2])){retBoo = true;}
+    retBoo = jackpot() || (!_fruits[0].equals(_fruits[1]) && !_fruits[1].equals(_fruits[2]) && !_fruits[2].equals(_fruits[0]));
+
+
     return retBoo;
-    // Could be made more concise with an or statement and a plain return w/out retboo but code extremely lengthy anyhow
   }
 
 
   //main() method for testing
   public static void main( String[] args ) {
+    
+    
     //usage: move bar below down 1 line at a time to test functionality...
 
+    
     Slots machine01 = new Slots();
     Slots machine02 = new Slots();
 
@@ -155,7 +177,7 @@ public class Slots {
     System.out.println( "====================================" );
     System.out.println( "Your spin..." + "\t" + machine01 );
     System.out.println( "JACKPOT!\n" );
-      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    
   }//end main
 
 }//end class Slots
