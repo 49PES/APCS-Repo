@@ -1,23 +1,24 @@
-public class Being {
-  protected int health;
-  protected int maxHealth;
-  protected int damage;
-  protected String attackState = "";
-  protected String name = "";
-  protected int level;
+public class Monster {
 
-  public Being() {
+  private int health;
+  private int damage;
+  private String attackState = "";
+  private String monsterName = "";
+  private int level;
+
+
+  public Monster() {
     this.health = 100;
-    this.damage = 15;
+    this.damage = 5;
     this.level = 0;
     this.attackState = "normalize";
   }
-  public Being(String name) {
+  public Monster(String name) {
     this();
-    this.name = name;
+    this.monsterName = name;
   }
   public String getName() {
-    return this.name;
+    return this.monsterName;
   }
   public int getHealth() {
     return this.health;
@@ -26,27 +27,33 @@ public class Being {
   public String toString() {
     return "Name: " + getName() + "\nLevel: " + this.level + "\nHealth: " + this.health + "\nAttack State" + this.attackState;
   }
-  public void specialize() {
-    this.attackState = "specialize";
-  }
-  public void normalize() {
-    this.attackState = "normalize";
-  }
+
   public boolean isAlive() {
     return health >= 0;
   }
   public void takeDamage(int damage) {
     this.health -= damage;
   }
-  public void increaseLevel(int health, int damage) {
-    this.maxHealth += health;
-    this.damage += damage;
-    this.level++;
+  public int attack(Protagonist name) {
+    if (attackState.equals("specialize")) {
+      //System.out.println("Swinging Hammer...");
+      int amplifier = (int) (Math.random() * 10);
+      if (amplifier > 5) {
+        damage += amplifier;
+       
+      } else {
+        System.out.println("Youg swung too hard, and bashed thy skull");
+        takeDamage(5);
+        
+      }
+    } else {
+      damage = 5;
+      
+    }
+    name.takeDamage(damage);
+
+
+    return damage;
   }
-  public void resetHealth() {
-    this.health = maxHealth;
-  }
-  public int attack() {
-    return 0;
-  }
+
 }
