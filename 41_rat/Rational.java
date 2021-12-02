@@ -1,3 +1,15 @@
+/*****************************************************
+ * Team: Silly Serpents
+ * Team Members (+ Duckies): Vansh Saboo, Jason Zhou: Duckies: Tiggy, Tiffany
+ * APCS Pd. 8
+ * HW41 -- Be Rational
+ * 2021-12-02
+ - Working with Rational objects
+ - Time Spent : 0.2 hours
+ - DISCO: N/A
+ - QCC: N/A
+ *****************************************************/
+
 public class Rational{
     private int numerator;
     private int denominator;
@@ -12,6 +24,8 @@ public class Rational{
             denominator = denom;
         }
         else{
+            numerator = 0;
+            denominator = 1;
             System.out.println("You can not use a denominator of 0. This Rational object has been set to 0/1");
         }
     }
