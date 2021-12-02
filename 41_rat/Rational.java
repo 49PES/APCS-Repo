@@ -53,8 +53,9 @@ public class Rational{
     public int compareTo(Rational r){
         int leftProduct = this.num * r.denom;
         int rightProduct = this.denom * r.num;
-        if(leftProduct == rightProduct){return 1;}
-        if(leftProduct > rightProduct){return -1;}
+        if(leftProduct == rightProduct){return 0;}
+        if(leftProduct > rightProduct){return 1;}
+        return -1;
     }
     
     public float floatValue(){
