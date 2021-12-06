@@ -45,7 +45,17 @@ public class Rational{
         }
         else{ System.out.println("You can not use a denominator of 0. This Rational object has been set to 0/1");  }
     }
-    
+    public static int gcd(int a, int b){
+     if(a == 0 || b == 0){return 0;}
+     int firstNum = Math.abs(a);
+     int secondNum = Math.abs(b);
+     while(firstNum != secondNum){
+      if(firstNum > secondNum) {firstNum -= secondNum;}
+      else{secondNum -= firstNum;}
+     }
+     return firstNum;
+    }
+ 
     @Override
     public String toString(){
         return numerator + "/" + denominator;
