@@ -1,59 +1,96 @@
-/*****************************************************
- * Team: Silly Serpents
- * Team Members (+ Duckies): Vansh Saboo, Jason Zhou: Duckies: Tiggy, Tiffany
- * APCS Pd. 8
- * HW43 -- Array of Steel
- * 2021-12-06
- - Working with arrays
- - Time Spent : 0.5 hours
- - DISCO: N/A        
- - QCC: N/A
- *****************************************************/
+// Silly Serpents; Jason Zhou, Vansh Saboo, Tiffany, Tiggy
+// APCS pd8
+// HW43 -- encapsulation (basic SuperArray functionality)
+// 2021-12-07
 
-public class SuperArray{
-    
-    // Takes an array and an element, and appends the element to the end of the list
-    
-    public static int[] add(int[] list, int newElement){
-        int[] newList = new int[list.length + 1];
-        for(int i = 0; i < list.length; i++){
-            newList[i] = list[i];
-        }
-        newList[newList.length - 1] = newElement;
-        return newList;
+//Disco: 
+//Qcc: is there a way to do set w/o a temp variable?
+//Time spent: 0.2 hr
+/***************************
+ * class SuperArray
+ * Wrapper class for array. Facilitates resizing,
+ * getting and setting element values.
+ ***************************/
+
+public class SuperArray
+{
+
+  private int[] _data;  //underlying container
+  private int _size;    //number of elements in this SuperArray
+
+
+  //default constructor – initializes 10-item array
+  public SuperArray()
+  {
+      _data = new int[10];
+  }
+
+
+  //output SuperArray in [a,b,c] format
+  public String toString()
+  {
+    String temp = "[";
+    for (int i = 0; i < _data.length - 1; i++) {
+        temp += _data[i] + ", ";
     }
-    
-    // Removes the first instance of a given element in the array and returns the culled array 
-    
-    public static int[] subtract(int[] list, int removedElement){
-        boolean isInArray = false;
-        for(int element : list){if (element == removedElement) {isInArray = true;}}
-        if(isInArray){
-            int[] newList = new int[list.length  - 1];
-            boolean isRemoved = false;
-            int index = 0;
-            for(int i = 0; i < list.length; i++){
-                if(list[i] != removedElement || isRemoved){newList[index] = list[i]; index++;}
-                else{isRemoved = true;}
-            }
-            return newList;
-        }
-        else{throw new RuntimeException();}
+    return temp + _data[_data.length-1] + "]";
+
+  }
+
+
+  //double capacity of SuperArray
+  private void expand()
+  {
+    int[] temp = _data;
+    _data = new int[temp.length * 2];
+    for (int i = 0; i < temp.length; i++) {
+        _data[i] = temp[i];
     }
+
+    /* YOUR IMPLEMENTATION HERE */
+  }
+
+
+  //accessor -- return value at specified index
+  public int get( int index )
+  {
+    /* YOUR IMPLEMENTATION HERE */
+    return _data[index];
+  }
+
+
+  //mutator -- set value at index to newVal,
+  //           return old value at index
+  public int set( int index, int newVal )
+  {
+    /* YOUR IMPLEMENTATION HERE */
+    int temp = get(index);
+    _data[index] = newVal;
+    return temp;
+  }
+
+
+  //main method for testing
+  public static void main( String[] args )
+  {
     
-    // Copies an array within a given range
-    public static int[] copyOfRange(int[] list, int startIndex, int endIndex){
-        if(0 <= startIndex && startIndex < endIndex && endIndex < list.length){
-            // {5, 7, 13, 17, 19}
-            int[] copiedArray = new int[endIndex - startIndex + 1];
-            int index = 0;
-            for(int i = startIndex; i <= endIndex; i++){
-                copiedArray[index] = list[i]; index++;
-            }
-            return copiedArray;
-        }
-        else{throw new RuntimeException();}
-    }
+      SuperArray curtis = new SuperArray();
+      System.out.println( "Printing empty SuperArray curtis..." );
+      System.out.println( curtis );
+      
+      for( int i = 0; i < curtis._data.length; i++ ) {
+      curtis.set( i, i * 2 );
+      }
+      System.out.println("Printing populated SuperArray curtis...");
+      System.out.println(curtis);
+      for( int i = 0; i < 3; i++ ) {
+      curtis.expand();
+      System.out.println("Printing expanded SuperArray curtis...");
+      System.out.println(curtis);
+      }
+      
+  }//end main()
+
+
+}//end class
     
-    public static void main(String[] args){  }
-}
