@@ -1,4 +1,14 @@
-
+/*****************************************************
+ * Team: Silly Serpents
+ * Team Members (+ Duckies): Vansh Saboo, Jason Zhou: Duckies: Tiggy, Tiffany
+ * APCS Pd. 8
+ * HW43 -- Array of Steel
+ * 2021-12-06
+ - Working with arrays
+ - Time Spent : 0.5 hours
+ - DISCO: N/A        
+ - QCC: N/A
+ *****************************************************/
 public class SuperArray{
     
     // Takes an array and an element, and appends the element to the end of the list
