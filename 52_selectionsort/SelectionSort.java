@@ -1,25 +1,25 @@
-// Clyde "Thluffy" Sinclair
-// APCS pd0
-// HW52 -- implementing selection sort
-// 2022-01-05w
-// time spent:  hrs
+// Silly Snakes - Neil Lin, Vansh Saboo, Hamim Seam
+// HW52: Selection, Natch
+// 2021-1-4
+// time spent: 0.5 hrs
 
 /******************************
  *   class SelectionSort -- implements SelectionSort algorithm
  *
- * ALGO:
+ * ALGO: Find the greatest value and set it at the end of the arraylist. After every pass, decrement the max position so that the next greatest value will be put right before
+ * the previous greatest value. (last, 2nd last, 3rd last, etc.)
  *
- * DISCO
+ * DISCO-
  *
- * QCC
+ * QCC-
  * q0: How many passes to sort n elements?
- * a0:
+ * a0: n passes
  * q1: What do you know after pass p?
- * a1:
+ * a1: the last p elements are sorted.
  * q2: How do you know if sorted?
- * a2:
+ * a2: You have iterated through the entire list and ensured ascending order for each one 
  * q3: What does a pass boil down to?
- * a3:
+ * a3: Finding the next greatest value and swapping it with the element at the p-th index from the right (when you're on your p-th iteration).
  ******************************/
 
 
@@ -56,38 +56,34 @@ public class SelectionSort
   }
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
- 
+
   // VOID version of SelectionSort
   // Rearranges elements of input ArrayList
   // postcondition: data's elements sorted in ascending order
   public static void selectionSortV( ArrayList<Comparable> data )
   {
-    //note: this version places greatest value at "rightmost" end
-
     //maxPos will point to position of SELECTION (greatest value)
-    int maxPos;
+    int maxPos = 0;
 
-    for(int i = data.size() - 1; i > 0; i--  ) {
+    for(int pass = data.size(); pass > 0; pass--) {
       System.out.println( "\nbegin pass " + (data.size()-pass) );//diag
 
-      maxPos = i;
-      
-      for(int j = i; j > 0; j--) {
-        // if new value is greater than maxPos, set maxPos to the index of that index
-        if(data.get(maxPos) < data.get(j)){
-          maxPos = j;
+      //check for greatest
+      Comparable greatest = 0;
+      for(int index = 0; index < pass; index++) {
+        if(data.get(index).compareTo(greatest) > 0) {
+          greatest = data.get(index);
+          maxPos = index;
         }
-        
         System.out.println( "maxPos: " + maxPos );//diag
         System.out.println( data );//diag
-
-
       }
 
-      int temp = data.get(i);
-      data.set(i, data.get(maxPos) );
-      data.set(maxPos, temp);
-     
+      //shift
+      data.add(pass, data.get(maxPos));
+      data.remove(data.get(maxPos));
+
+      
       System.out.println( "after swap: " +  data );//diag
     }
   }//end selectionSort
@@ -115,7 +111,7 @@ public class SelectionSort
   public static void main( String [] args )
   {
 
-    /*===============for VOID methods=============
+    
     ArrayList glen = new ArrayList<Integer>();
     glen.add(7);
     glen.add(1);
@@ -129,28 +125,9 @@ public class SelectionSort
     System.out.println( "ArrayList coco before sorting:\n" + coco );
     selectionSortV(coco);
     System.out.println( "ArrayList coco after sorting:\n" + coco );
-      ============================================*/
+ 
 
-    /*==========for AL-returning methods==========
-      ArrayList glen = new ArrayList<Integer>();
-      glen.add(7);
-      glen.add(1);
-      glen.add(5);
-      glen.add(12);
-      glen.add(3);
-      System.out.println( "ArrayList glen before sorting:\n" + glen );
-      ArrayList glenSorted = selectionSort( glen );
-      System.out.println( "sorted version of ArrayList glen:\n"
-      + glenSorted );
-      System.out.println( "ArrayList glen after sorting:\n" + glen );
-      ArrayList coco = populate( 10, 1, 1000 );
-      System.out.println( "ArrayList coco before sorting:\n" + coco );
-      ArrayList cocoSorted = selectionSort( coco );
-      System.out.println( "sorted version of ArrayList coco:\n"
-      + cocoSorted );
-      System.out.println( "ArrayList coco after sorting:\n" + coco );
-      System.out.println( coco );
-      ============================================*/
+
 
   }//end main
 
