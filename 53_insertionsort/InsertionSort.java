@@ -33,7 +33,7 @@
 
 import java.util.ArrayList;
 
-public class Main
+public class InsertionSort
 {
   //~~~~~~~~~~~~~~~~~~~ HELPER METHODS ~~~~~~~~~~~~~~~~~~~
   //precond: lo < hi && size > 0
