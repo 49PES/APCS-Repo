@@ -49,7 +49,7 @@ public class StatPrinter
 {
   // instance variable for frequencies of each integer in input ArrayList
   protected ArrayList <Integer> _frequency;
-  private ArrayList <Integer> _data;
+  protected ArrayList <Integer> _data;
 
 
   //*************** QUESTION 02 **************************
@@ -64,10 +64,11 @@ public class StatPrinter
 
     _frequency = new ArrayList<Integer>();
     for(int i=0; i< max(data)+1; i++){
-      _frequency.add(0);
+      _frequency.add(0); // O(n) time to add all of the empty indexes
     }
 
-    for(int i = 0; i < max(data) + 1;i++){
+// O(n) time where n is the max value in the data set
+    for(int i = 0; i < max(data) + 1; i++){
         if(i < data.size()){
           _frequency.set(data.get(i),_frequency.get(data.get(i))+1);
           System.out.println(_frequency);
@@ -89,6 +90,7 @@ public class StatPrinter
       }
     }
     return max;
+    // O(n) time, because the code runs through the entire list exactly once in order to find the max value
   }
 
 
@@ -104,25 +106,35 @@ public class StatPrinter
   //    isLocalMode(5) -> true
   public boolean isLocalMode( int i )
   {
-    return (i > 0 && i < _data.size()-1 && _data.get(i-1) < _data.get(i) && _data.get(i+1) < _data.get(i));
+    // O(1) time, because the number of comparisons made are constant
+    return (i > 0 && i < _frequency.size()-1 && _frequency.get(i-1) < _frequency.get(i) && _frequency.get(i+1) < _frequency.get(i));
   }
 
 
   //*************** QUESTION 04 **************************
   //postcond: returns list of modes in _frequency
-  // public ArrayList<Integer> getLocalModes()
-  // {
-  //   /* YOUR IMPLEMENTATION HERE */
-  //
-  // }
+  public ArrayList<Integer> getLocalModes()
+  {
+     ArrayList<Integer> localModes = new ArrayList<Integer>();
+     // O(n) time, since you iterate through the entire frequency list once
+     for(int i = 0; i < _frequency.size(); i++){
+       if(isLocalMode(i)) {localModes.add(i); }
+     }
+     return localModes;
+  }
+
 
 
   //*************** QUESTION 05 **************************
   //precond:  longestBar > 0
   public void printHistogram( int longestBar )
   {
+    // O(n) time, since you iterate through the entire frequency list once
+
+    for(int i = 0; i < _frequency.size(); i++){
+      System.out.println(i + " : " + "*".repeat(_frequency.get(i) * longestBar / max(_frequency) ) );
+    }
     /* YOUR IMPLEMENTATION HERE */
   }
-public static void main(String[] args) {
-}
+
 }//end class StatPrinter
