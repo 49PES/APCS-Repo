@@ -1,8 +1,8 @@
-// Clyde "Thluffy" Sinclair
-// APCS pd0
+// Team IDC (Vansh Saboo, May Qiu, Jeffery Tang)
+// APCS pd6
 // L05 -- pulling it together
 // 2022-02-03r
-// time spent:  hrs
+// time spent: 2 hrs
 
 /***
  * class StatPrinterApp
@@ -15,12 +15,13 @@ public class StatPrinterApp
 {
   public static void main( String[] args )
   {
-
     /*=================
       data:
       [2,5,2,3,4,4,4]
+
       desired _freq:
       [0,0,2,1,3,1]
+
       freq initially:
       [0,0,0,0,0,0]
       =================*/
@@ -37,10 +38,11 @@ public class StatPrinterApp
 
     StatPrinter sp1 = new StatPrinter( al1 );
 
+    
       System.out.println( "sp1 testing... " );
       sp1.max( al1 );
-      // sp1.printHistogram( 50 );
-
+      sp1.printHistogram( 50 );
+    
 
 
     //construct data [2,3,2,5,2,3]
@@ -54,19 +56,13 @@ public class StatPrinterApp
     al2.add(3);
 
     StatPrinter sp2 = new StatPrinter( al2 );
-    System.out.println("sp2 testing frequency:" + sp2._frequency);
+
     System.out.println( "sp2 testing: " );
     System.out.println( "al2 max: " + sp1.max(al2) );
     System.out.println( "local modes: " );
-    // for(int index = 0; index < sp2._frequency.size(); index++ ) {
-    // System.out.println( "Index " + index + "is local mode?\t" + sp2.isLocalMode(index) );
-    // }
-    for(Integer i : al2) {
-     System.out.println( "Index " + i + "is local mode?\t" + sp2.isLocalMode(i) );
+    for( Integer i : al2 ) {
+    System.out.println( i + " is local mode?\t" + sp2.isLocalMode(i) );
     }
-    System.out.println("Local mode list: " + sp2.getLocalModes() );
-
-
     System.out.println( "histogram:" );
     sp2.printHistogram( 50 );
   }
